@@ -7,14 +7,17 @@ System Overview: AgriLink
    
 
 👥 User Roles
-Role
-Description
-Farmer
-Registers products, views offers, tracks sales.
-Buyer
-Searches and buys available farm products.
-Admin
-Manages users, products, categories, reports, disputes.
+
+
+Role                                                                                                      Description
+
+Farmer                                                                                   Registers products, views offers, tracks sales.
+
+
+Buyer                                                                                    Searches and buys available farm products.
+
+
+Admin                                                                                    Manages users, products, categories, reports, disputes.
 
 
      
