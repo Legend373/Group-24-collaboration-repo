@@ -4,11 +4,20 @@ System Overview: AgriLink
 
    A digital platform that connects Farmers, Buyers, and Admins for trading agricultural products.
 
+   
+
 👥 User Roles
-     Role                         Description
-     Farmer                 Registers products, views offers, tracks sales.
-     Buyer                  Searches and buys available farm products.
-     Admin                  Manages users, products, categories, reports, disputes.
+Role
+Description
+Farmer
+Registers products, views offers, tracks sales.
+Buyer
+Searches and buys available farm products.
+Admin
+Manages users, products, categories, reports, disputes.
+
+
+     
 
 📐 System Architecture
 
@@ -16,71 +25,103 @@ Tech Stack Recommendation (MERN Style):
 
 Frontend:     React (Vite), Tailwind UI
 
+
 Backend:      Node.js + Express
+
 
 Database:     MongoDB (Mongoose ODM)
 
+
 Auth:         JWT (Access + Refresh Tokens)
+
 
 File          
 Uploads:      Cloudinary or Firebase Storage (for product images)
 
+
 Task 
 Scheduling:   Node-cron (for expired offers, weekly reports)
 
+
 APIs:         RESTful
+
+
 
 🧩 High-Level Modules & Features
 
+
 1. Authentication & Authorization
    
-  Signup/Login (email or phone-based)
+    Signup/Login (email or phone-based)
+   
 
-  Role-based access (Farmer / Buyer / Admin)
+    Role-based access (Farmer / Buyer / Admin)
+   
 
-  JWT token management
+    JWT token management
+   
 
-  Password reset (email-based or OTP)
+    Password reset (email-based or OTP)
+   
   
-2. Farmer Dashboard
+3. Farmer Dashboard
+   
   
-  Profile Management (name, location, farm type)
+    Profile Management (name, location, farm type)
+  
 
-  Product Management:
+    Product Management:
+   
 
-  Add new product (name, category, price, quantity, image, description)
+    Add new product (name, category, price, quantity, image, description)
+   
 
-  Edit / Delete product
+    Edit / Delete product
+   
 
-  Mark product as "Sold"
+    Mark product as "Sold"
+   
 
-  View orders from buyers
+    View orders from buyers
+  
 
-  Sales Analytics (past 30 days, top-selling items)
+    Sales Analytics (past 30 days, top-selling items)
+   
 
 3. Buyer Dashboard
    
-  Search/Filter Products (category, location, price, availability)
+   
+    Search/Filter Products (category, location, price, availability)
+   
 
-  Product Details Page (image, price, description, farmer contact)
+    Product Details Page (image, price, description, farmer contact)
+   
 
-  Cart & Checkout
+    Cart & Checkout
+   
 
-  Place Order
+    Place Order
+   
 
-  View Order History
+    View Order History
+   
 
-  Rate Purchased Products
+    Rate Purchased Products
+   
 
-4. Admin Panel
+5. Admin Panel
+   
 
- User Management:
+User Management:
 
    View all users
+   
 
    Approve/suspend accounts
+   
 
    Role assignment (force promote/demote)
+   
 
 
  Product Oversight:
