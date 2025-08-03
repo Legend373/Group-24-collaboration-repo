@@ -2,7 +2,7 @@
 
 System Overview: AgriLink
 
-   A digital platform that connects Farmers, Buyers, and Admins for trading agricultural products.
+   A digital platform that connects Farmers and  Buyers for trading agricultural products.
 
    
 
@@ -11,20 +11,23 @@ System Overview: AgriLink
 
 Role                                                                                                      Description
 
-Farmer                                                                                   Registers products, views offers, tracks sales.
+Farmer:                                                                                   Registers products, views offers, tracks sales.
 
 
-Buyer                                                                                    Searches and buys available farm products.
+Buyer:                                                                                    Searches and buys available farm products.
 
 
-Admin                                                                                    Manages users, products, categories, reports, disputes.
+Admin :                                                                                   Manages users, products, categories, reports, disputes.
 
 
      
 
 📐 System Architecture
 
+
+
 Tech Stack Recommendation (MERN Style):
+
 
 Frontend:     React (Vite), Tailwind UI
 
@@ -55,92 +58,104 @@ APIs:         RESTful
 
 1. Authentication & Authorization
    
-    Signup/Login (email or phone-based)
+   
+    - Signup/Login (email or phone-based)
    
 
-    Role-based access (Farmer / Buyer / Admin)
+    - Role-based access (Farmer / Buyer / Admin)
    
 
-    JWT token management
+    - JWT token management
    
 
-    Password reset (email-based or OTP)
+    - Password reset (email-based or OTP)
    
   
 3. Farmer Dashboard
    
   
-    Profile Management (name, location, farm type)
+   - Profile Management (name, location, farm type)
   
 
-    Product Management:
+   - Product Management:
    
 
-    Add new product (name, category, price, quantity, image, description)
+   - Add new product (name, category, price, quantity, image, description)
    
 
-    Edit / Delete product
+   - Edit / Delete product
    
 
-    Mark product as "Sold"
+   - Mark product as "Sold"
    
 
-    View orders from buyers
+   - View orders from buyers
   
 
-    Sales Analytics (past 30 days, top-selling items)
+   - Sales Analytics (past 30 days, top-selling items)
    
 
 3. Buyer Dashboard
    
    
-    Search/Filter Products (category, location, price, availability)
+   - Search/Filter Products (category, location, price, availability)
    
 
-    Product Details Page (image, price, description, farmer contact)
+   - Product Details Page (image, price, description, farmer contact)
    
 
-    Cart & Checkout
+   - Cart & Checkout
    
 
-    Place Order
+   - Place Order
    
 
-    View Order History
+   - View Order History
    
 
-    Rate Purchased Products
+   - Rate Purchased Products
    
 
 5. Admin Panel
    
 
-User Management:
+ User Management:
+ 
 
-   View all users
+   - View all users
    
 
-   Approve/suspend accounts
+   - Approve/suspend accounts
    
 
-   Role assignment (force promote/demote)
+   - Role assignment (force promote/demote)
    
 
 
- Product Oversight:
+  Product Oversight:
+  
 
-   View all listings
+   - View all listings
+     
 
-   Remove/report flagged items
+   - Remove/report flagged items
+     
 
-   Manage product categories
+   - Manage product categories
+     
 
-   Order & Dispute Management
+   - Order & Dispute Management
+     
 
-   View system analytics (daily new users, orders, popular products)
+   - View system analytics (daily new users, orders, popular products)
 
 
-
+Team member roles
+  
+  Yasmin ------------------------------------------------------ Frontend/Backend
+  Fraol  ------------------------------------------------------ Frontend/Backend
+  Meron  ------------------------------------------------------ Frontend/Backend
+  Ruth   ------------------------------------------------------ Backend
 
 
 
