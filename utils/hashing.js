@@ -1,13 +1,13 @@
-const { hash } = require("bcryptjs")
+const { hash, compare } = require("bcryptjs");
 
-exports.doHash = (value, saltValue) => {
-    const result = hash(value,saltValue)
-    return result;
-
+// Hash a value (e.g., password)
+exports.doHash = async (value, saltValue) => {
+  const result = await hash(value, saltValue);
+  return result;
 };
 
-exports.dollashvalidation = (value,hashedValue) =>{
-    const result = compare(value,hashedValue);
-    return result;
-
-}
+// Validate a value against a hash
+exports.doHashValidation = async (value, hashedValue) => {
+  const result = await compare(value, hashedValue);
+  return result;
+};

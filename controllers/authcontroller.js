@@ -1,41 +1,46 @@
-const jwt = require('jsonwebtoken')
-const {signupSchema } = require("../middlewares/validator");
+const jwt = require("jsonwebtoken");
+const { signupSchema, signinSchema } = require("../middlewares/validator");
 const User = require("../models/usersModel");
-const { doHash } = require("../utils/hashing")
-exports.signup = async (req,res) =>{
-    const {email,password} = req.body;
-    try {
-        const {error, value} = signupSchema.validate({email,password});
+const { doHash, doHashValidation } = require("../utils/hashing");
 
-        if(error){
-            return res.status(401).json({success:false, message: error.details[0].message})
-        }
-        const existingUser = await User.findOne({email});
+exports.signup = async (req, res) => {
+  const { email, password } = req.body;
 
-        if (existingUser){
-            return res
-            .status(401)
-            .json({success:false, message:"User already exists!"})
-    } 
+  try {
+    const { error } = signupSchema.validate({ email, password });
+    if (error) {
+      return res
+        .status(401)
+        .json({ success: false, message: error.details[0].message });
+    }
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res
+        .status(401)
+        .json({ success: false, message: "User already exists!" });
+    }
 
     const hashedPassword = await doHash(password, 12);
 
-    const newUser = new User ({
-        email,
-        password:hashedPassword,
-    })
-    const result = await newUser.save ();
-    result.password = undefined
-    res.status(201).json({
-        success:true, message:"Your account has been created successfuly ",
-        result,
-        
+    const newUser = new User({
+      email,
+      password: hashedPassword,
     });
-}catch (error) {
-        console.log(error);
-    }
-};
 
+    const result = await newUser.save();
+    result.password = undefined;
+
+    res.status(201).json({
+      success: true,
+      message: "Your account has been created successfully",
+      result,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Server error!" });
+  }
+};
 
 exports.signin = async (req, res) => {
   const { email, password } = req.body;
@@ -46,7 +51,7 @@ exports.signin = async (req, res) => {
     if (error) {
       return res
         .status(400)
-        .json({ success: false, message: "Invalid input!" });
+        .json({ success: false, message: error.details[0].message });
     }
 
     // Check if user exists
@@ -93,3 +98,28 @@ exports.signin = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error!" });
   }
 };
+exports.signout = async (req, res) => {
+    res
+    .clearCookie("Authorization")
+    .status(200)
+    .json({success:true, message: 'logged out successfuly'})
+
+};
+
+exports.sendverificationcode = async (req,res) => {
+    const {email} = req.body;
+    try{
+        const existingUser = await User.findOne({ email });
+        if (!existingUser) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User does not exist!" });
+    }
+    if (existingUser.verified) {
+
+    }
+    const codeVerification = Math.floor( Math.random() * 1000000).toString();
+    } catch(error) {
+        console.log(error);
+    }
+}
