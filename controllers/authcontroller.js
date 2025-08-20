@@ -106,38 +106,44 @@ exports.signout = async (req, res) => {
 
 };
 
-exports.sendverificationcode = async (req,res) => {
-    const {email} = req.body;
-    try{
-        const existingUser = await User.findOne({ email });
-        if (!existingUser) {
+exports.sendVerificationCode = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) {
       return res
         .status(404)
         .json({ success: false, message: "User does not exist!" });
     }
-    if (existingUser.verified) {
 
+    if (existingUser.verified) {
+      return res.status(400).json({ success: false, message: "User already verified!" });
     }
-    const codeVerification = Math.floor( Math.random() * 1000000).toString();
-    let info = await transport.sendmail({
+
+    const codeValue = Math.floor(Math.random() * 1000000).toString();
+    let info = await transport.sendMail({
       from: process.env.NODE_CODE_SENDING_EMAIL_ADRESS,
       to: existingUser.email,
       subject: "Verification Code",
-      html:'<h1>' + codeValue + '</h1>'
-    })
+      html: `<h1>${codeValue}</h1>`
+    });
 
-    if(info.accepted[0] === existingUser.email) {
-      const hashedCodeValue = hmacProcess(codeValue, process.env.
-        HMAC_VERIFICATION_CODE_SECRET);
-        exisitingUser.verificationCode = hashedCodeValue;
-        existingUser.verificationCodeValidation = Date.now()
-        await existingUser.save();
-        return res.status(200).json({success: true, message:'code sent!'})
+    if (info.accepted[0] === existingUser.email) {
+      const hashedCodeValue = hmacProcess(
+        codeValue,
+        process.env.HMAC_VERIFICATION_CODE_SECRET
+      );
+      existingUser.verificationCode = hashedCodeValue;
+      existingUser.verificationCodeValidation = Date.now();
+      await existingUser.save();
 
-
-    } 
-    res.status(400).json({success: false, message: 'Code sent failed!'})
-    } catch(error) {
-        console.log(error);
+      return res.status(200).json({ success: true, message: "Code sent!" });
     }
-}
+
+    res.status(400).json({ success: false, message: "Code send failed!" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Server error!" });
+  }
+};
+0
